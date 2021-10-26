@@ -1,3 +1,5 @@
+import phonenumbers as phonenumbers
+
 from area_codes.data_types import AreaCode, AreaCodes, UsState, UsStateAbbreviation
 from area_codes.state_data import area_codes_to_state, state_to_area_code, abbrev_to_state, state_to_abbrev
 
@@ -28,3 +30,12 @@ def get_state_abbreviation(state: UsState) -> UsStateAbbreviation:
 
 def get_state_from_abbreviation(state: UsStateAbbreviation) -> UsState:
     return abbrev_to_state.get(state)
+
+
+def get_state_from_phone_number(phone_number: str):
+    if not phone_number.startswith("+1"):
+        phone_number = f"+1{phone_number}"
+    parsed = phonenumbers.parse(phone_number)
+    formatted = phonenumbers.format_number(parsed, phonenumbers.PhoneNumberFormat.NATIONAL)
+    area = formatted[:4][1:]
+    return get_state_for_area_code(int(area))

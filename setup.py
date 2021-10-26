@@ -10,7 +10,7 @@ README = (HERE / "README.md").read_text()
 
 setup(
     name='py_area_codes',
-    version='0.1.0',
+    version='0.1.1',
     description='Lightweight package to simplify dealing with area codes',
     long_description=README,
     long_description_content_type="text/markdown",
@@ -19,7 +19,7 @@ setup(
     author_email='jbirdvegas@gmail.com',
     license='Creative Commons',
     packages=find_packages(exclude=("tests",)),
-    install_requires=[],
+    install_requires=["phonenumbers"],
     include_package_data=True,
     classifiers=[
         'Operating System :: POSIX :: Linux',
